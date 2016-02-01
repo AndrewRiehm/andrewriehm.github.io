@@ -1,0 +1,19 @@
+<ion-view view-title="{{buff.name}}">
+    <ion-content class="padding">
+        <ul class="list">
+            <li class="item item-input">
+                <span class="input-label">Name:</span>
+                <input ng-model="buff.name" type="text">
+            </li>
+            <li class="item item-input">
+                <span class="input-label">ToHit</span>
+                <input ng-model="buff.toHit" type="number">
+            </li>
+            <li class="item item-input">
+                <span class="input-label">Damage</span>
+                <input ng-model="buff.damage" type="number">
+            </li>
+            <ion-toggle ng-model="buff.extraHit">Extra hit?</ion-toggle>
+        </ul>
+    </ion-content>
+</ion-view>

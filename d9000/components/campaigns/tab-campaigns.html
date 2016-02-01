@@ -1,0 +1,16 @@
+<ion-view view-title="Campaigns">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate" ng-repeat="campaign in campaigns" type="item-text-wrap" href="#/tab/campaigns/{{campaign.name}}">
+        <h2>{{campaign.name}}</h2>
+
+        <ion-option-button class="button-assertive" ng-click="remove(campaign)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+      <ion-item class="item" type="item-text-wrap" ng-click="showNewForm()">
+        <i class="icon icon-large ion-plus"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

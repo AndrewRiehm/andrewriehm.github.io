@@ -1,0 +1,16 @@
+<ion-view view-title="Characters">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate" ng-repeat="character in characters" type="item-text-wrap" href="#/tab/campaigns/characters/{{character.name}}">
+        <h2>{{character.name}}</h2>
+
+        <ion-option-button class="button-assertive" ng-click="remove(character)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+      <ion-item class="item" type="item-text-wrap" ng-click="showNewForm()">
+        <i class="icon icon-large ion-plus"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

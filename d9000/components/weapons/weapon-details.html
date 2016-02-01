@@ -1,0 +1,52 @@
+<ion-view view-title="{{weapon.name}}">
+  <ion-content>
+    <div class="card" ng-show="showCard === 'main'">
+        <ion-list>
+          <ion-item>
+            <button class="button button-dark" ng-disabled="!weapon.attacks || weapon.attacks.length === 0"  ng-click="rollOne(Roller, weapon.attacks[0], activeBuffs)">Roll First Attack</button>
+          </ion-item>
+          <ion-item>
+            <button class="button button-dark" ng-disabled="!weapon.attacks || weapon.attacks.length === 0" ng-click="rollAll(Roller, weapon.attacks, activeBuffs)">Roll All Attacks</button>
+          </ion-item>
+          <ion-item class="item-remove-animate" ng-repeat="attack in weapon.attacks" type="item-text-wrap" href="#/tab/characters/{{character.name}}/{{weapon.name}}/{{attack.name}}">
+            <h2>{{attack.name}}:  +{{attack.toHit}} for {{attack.damage}} dmg ({{attack.crit}}x{{attack.critMult}})</h2>
+
+            <ion-option-button class="button-assertive" ng-click="remove(weapon, attack)">
+              Delete
+            </ion-option-button>
+          </ion-item>
+          <ion-item class="item" type="item-text-wrap" ng-click="showNewForm()">
+            <i class="icon icon-large ion-plus"></i>
+          </ion-item>
+        </ion-list>
+    </div>
+    <div class="card" ng-show="showCard === 'allAttacks'">
+        <h2>Attack Rolls!</h2>
+        <ion-list>
+            <ion-item class="item" ng-repeat="roll in attackRolls" type="item-text-wrap">
+                <ion-checkbox ng-model="actualHits[$index]" ng-class="{ epicFail: roll.whif }">
+                    +{{roll.toHit}} for {{roll.damage}} dmg
+                </ion-checkbox>
+                <ion-checkbox ng-model="crits[$index]" ng-show="roll.crit" ng-class="{ epicWin: crits[$index] }">
+                    Confirm at +{{roll.critConf}} for {{roll.critDmg}} dmg
+                </ion-checkbox>
+            </ion-item>
+        </ion-list>
+        <h2>Total Damage: {{totalDamage}}</h2>
+        <button class="button button-dark" ng-click="rollAll();">Roll Again</button>
+        <button class="button button-dark" ng-click="doneAttacking();">Done</button>
+    </div>
+    <div class="card" ng-show="showCard === 'oneAttack'">
+        <h2>One Attack!</h2>
+        <ion-checkbox ng-model="actualHits[0]" ng-class="{ epicFail: attackRolls[0].whif }">
+            +{{attackRolls[0].toHit}} for {{attackRolls[0].damage}} dmg
+        </ion-checkbox>
+        <ion-checkbox ng-model="crits[0]" ng-show="attackRolls[0].crit" ng-class="{ epicWin: crits[0] }">
+            Confirm at +{{attackRolls[0].critConf}} for {{attackRolls[0].critDmg}} dmg
+        </ion-checkbox>
+        <h2>Total Damage: {{totalDamage}}</h2>
+        <button class="button button-dark" ng-click="rollOne();">Roll Again</button>
+        <button class="button button-dark" ng-click="doneAttacking();">Done</button>
+    </div>
+  </ion-content>
+</ion-view>
